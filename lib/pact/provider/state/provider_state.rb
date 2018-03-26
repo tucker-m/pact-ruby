@@ -68,6 +68,7 @@ module Pact
 
       attr_accessor :name
       attr_accessor :namespace
+      attr_accessor :call_params
 
       extend Pact::DSL
 
@@ -77,6 +78,10 @@ module Pact
         @set_up_defined = false
         @tear_down_defined = false
         @no_op_defined = false
+      end
+
+      def send_to_call hash
+        @call_params = hash
       end
 
       dsl do
