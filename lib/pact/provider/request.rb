@@ -10,9 +10,9 @@ module Pact
         # See https://github.com/rack/rack/blob/e7d741c6282ca4cf4e01506f5681e6e6b14c0b32/SPEC#L87-89
         NO_HTTP_PREFIX = ["CONTENT-TYPE", "CONTENT-LENGTH"]
 
-        def initialize expected_request, call_params={}
+        def initialize expected_request, provider_params={}
           @expected_request = expected_request
-          @call_params = call_params
+          @provider_params = provider_params
         end
 
         def method
@@ -33,7 +33,7 @@ module Pact
         end
 
         def headers
-          request_headers = @call_params || {}
+          request_headers = @provider_params || {}
           return request_headers if expected_request.headers.is_a?(Pact::NullExpectation)
           expected_request.headers.each do |key, value|
             request_headers[rack_request_header_for(key)] = Pact::Reification.from_term(value)

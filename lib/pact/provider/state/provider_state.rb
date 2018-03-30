@@ -68,7 +68,7 @@ module Pact
 
       attr_accessor :name
       attr_accessor :namespace
-      attr_accessor :call_params
+      attr_accessor :provider_params
 
       extend Pact::DSL
 
@@ -78,10 +78,11 @@ module Pact
         @set_up_defined = false
         @tear_down_defined = false
         @no_op_defined = false
+        @provider_params = {}
       end
 
-      def send_to_call hash
-        @call_params = hash
+      def provider_param var_name, value
+        @provider_params[var_name] = value
       end
 
       dsl do
