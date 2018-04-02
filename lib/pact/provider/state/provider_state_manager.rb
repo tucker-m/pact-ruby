@@ -15,7 +15,7 @@ module Pact
         if provider_state_name
           provider_state = get_provider_state
           provider_state.set_up
-          return provider_state.call_params
+          return provider_state.provider_params
         end
         return {}
       end
