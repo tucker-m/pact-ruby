@@ -65,7 +65,7 @@ describe "Bar", :pact => true do
                           body: Pact.each_like({status: Pact.term(/\d+/, "4")})
                         })
 
-    bar_response = Net::HTTP.get_response(URI('http://localhost:4638/thing'))
+    bar_response = Net::HTTP.get_response(URI('http://localhost:4638/thing/99'))
 
     expect(bar_response.code).to eql '200'
     expect(JSON.parse(bar_response.body)).to eq [{"status" => "4"}]
