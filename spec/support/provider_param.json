@@ -12,10 +12,17 @@
         "method": "get",
         "path": "/food_item/5",
         "query": "",
+        "headers": {
+          "Authorization": "Bearer faketoken"
+        },
         "matchingRules": {
           "$.path": {
             "match": "provider_param",
             "fill_string": "/food_item/:{id}"
+          },
+          "$.headers.Authorization": {
+            "match": "provider_param",
+            "fill_string": "Bearer :{auth_token}"
           }
         }
       },
