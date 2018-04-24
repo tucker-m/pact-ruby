@@ -57,7 +57,10 @@ describe "Bar", :pact => true do
       upon_receiving("a retrieve specific thing request")
       .with({
               method: :get,
-              path: Pact.provider_param(['/thing/', Pact.var(:id, '99')])
+              path: Pact.provider_param('/thing/:{id}', {id: '99'}),
+              headers: {
+                Authorization: Pact.provider_param('Bearer :{auth_token}', {auth_token: 'faketoken'})
+              }
             }).
       will_respond_with({
                           status: 200,
@@ -65,7 +68,12 @@ describe "Bar", :pact => true do
                           body: Pact.each_like({status: Pact.term(/\d+/, "4")})
                         })
 
-    bar_response = Net::HTTP.get_response(URI('http://localhost:4638/thing/99'))
+    uri = URI('http://localhost:4638/thing/99')
+    req = Net::HTTP::Get.new(uri)
+    req['Authorization'] = 'Bearer faketoken'
+    bar_response = Net::HTTP.start(uri.hostname, uri.port) { |http|
+      http.request(req)
+    }
 
     expect(bar_response.code).to eql '200'
     expect(JSON.parse(bar_response.body)).to eq [{"status" => "4"}]
