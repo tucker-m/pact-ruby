@@ -33,7 +33,7 @@ module Pact
         end
 
         def headers
-          request_headers = @provider_params || {}
+          request_headers = {}
           return request_headers if expected_request.headers.is_a?(Pact::NullExpectation)
           expected_request.headers.each do |key, value|
             request_headers[rack_request_header_for(key)] = Pact::Reification.from_term(value)
