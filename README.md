@@ -3,7 +3,7 @@
 This is a fork of the main Pact repository. It adds a new feature called provider params.
 
 For more information about Pact, see the readme for the main Pact repository at
-[https://github.com/pact-foundation/pact-ruby](github.com/pact-foundation/pact-ruby). To learn more about
+[github.com/pact-foundation/pact-ruby](https://github.com/pact-foundation/pact-ruby). To learn more about
 how to use Pact in a Ruby project, see [their Ruby implementation guide](https://docs.pact.io/documentation/ruby.html).
 Below is a description of what provider params are and how to use them. You may want to be familiar with using
 regular Pact first.
