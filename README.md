@@ -12,7 +12,7 @@ regular Pact first.
 
 This fork is not on rubygems.org, so you'll need to put this in your Gemfile:
 
-```
+```ruby
 gem 'pact-support', github: 'tucker-m/pact-support', tag: 'pr1.0'
 gem 'pact', github: 'tucker-m/pact-ruby', tag: 'pr1.0'
 ```
@@ -42,7 +42,7 @@ params come in.
 
 Provider params are put in your request similar to the way you use `Pact.term`. Here's how to create one:
 
-```
+```ruby
 Pact.provider_param('string with some :{param_one} and :{param_two}', {
   param_one: 'foo',
   param_two: 'bar'
@@ -64,7 +64,7 @@ There's a method, `provider_param()`, that is available inside of a provider sta
 It takes two arguments. The first is a symbol, which should match one of the parameter names you specified
 in the request. The second argument is the value that should be filled in for that parameter.
 
-```
+```ruby
 provider_state 'some state' do
   set_up do
     provider_param :param_one, 'this'
@@ -81,7 +81,7 @@ When you do `rake pact:verify` to run this test against the actual service provi
 
 You can use provider params in the path or headers of a request, like so:
 
-```
+```ruby
 animal_api.given('a zebra').
   upon_receiving('get an animal').
   with(
@@ -105,7 +105,7 @@ header `Authorization: fake_api_key`.
 If those values won't work on your actual service provider, you can change them when you set up the
 provider state, like so:
 
-```
+```ruby
 provider_state 'a zebra' do
   set_up do
     api_user = User.create!
