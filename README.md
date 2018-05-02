@@ -53,8 +53,8 @@ Pact.provider_param('string with some :{param_one} and :{param_two}', {
 in it with the `:{}` syntax, with a parameter name between the brackets.
 
 The hash gives the default values
-for those parameters, which are used when the test runs against your mock service provider. When running
-this test against our mock service provider, that `Pact.provider_param` will say
+for those parameters, which are used when the test runs against the mock service provider. When running
+this test against the mock service provider, that `Pact.provider_param` will say
 `"string with some foo and bar"`.
 
 ### Changing parameter values in the provider state 
@@ -62,7 +62,7 @@ this test against our mock service provider, that `Pact.provider_param` will say
 
 There's a method, `provider_param()`, that is available inside of a provider state's `set_up` block.
 It takes two arguments. The first is a symbol, which should match one of the parameter names you specified
-in the request. The second argument is the value that should be filled in for that parameter.
+in the request. The second argument is the value to fill in for that parameter.
 
 ```ruby
 provider_state 'some state' do
@@ -87,9 +87,9 @@ animal_api.given('a zebra').
   with(
     method: :get,
     headers: {
-      Authorization: Pact.provider_param(':{key}', {key: 'fake_api_key}),
+      Authorization: Pact.provider_param(':{key}', {key: 'fake_api_key'}),
     },
-    path: Pact.provider_param('/animals/:{animal_id}/profile, {animal_id: '7'}),
+    path: Pact.provider_param('/animals/:{animal_id}/profile', {animal_id: '7'}),
   ).
   will_respond_with(
     status: 200,
