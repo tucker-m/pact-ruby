@@ -13,8 +13,8 @@ regular Pact first.
 This fork is not on rubygems.org, so you'll need to put this in your Gemfile:
 
 ```
-gem 'pact-support', github: 'tucker-m/pact-support', tag: '1.0'
-gem 'pact', github: 'tucker-m/pact-ruby', tag: '1.0'
+gem 'pact-support', github: 'tucker-m/pact-support', tag: 'pr1.0'
+gem 'pact', github: 'tucker-m/pact-ruby', tag: 'pr1.0'
 ```
 
 You can also use `ref: 'master'` instead of `tag` to always use the latest version (possibly with breaking changes).
