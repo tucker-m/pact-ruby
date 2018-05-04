@@ -1,5 +1,6 @@
 # About this Repository
 
+[![Build Status](https://travis-ci.org/tucker-m/pact-ruby.svg?branch=master)](https://travis-ci.org/tucker-m/pact-ruby)
 This is a fork of the main Pact repository. It adds a new feature called provider params.
 
 For more information about Pact, see the readme for the main Pact repository at
