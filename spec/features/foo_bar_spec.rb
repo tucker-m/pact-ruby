@@ -8,21 +8,22 @@ load 'pact/consumer/world.rb'
 
 describe "Bar", :pact => true do
 
-  it "can retrieve a thing"  do
+  before :all do
+    Pact.clear_configuration
+    Pact.clear_consumer_world
 
-      Pact.clear_configuration
-      Pact.clear_consumer_world
-
-      Pact.service_consumer "Foo" do
-        has_pact_with "Bar" do
-          mock_service :bar_service do
-            pact_specification_version "2"
-            port 4638
-          end
+    Pact.service_consumer "Foo" do
+      has_pact_with "Bar" do
+        mock_service :bar_service do
+          pact_specification_version "2"
+          port 4638
         end
       end
+    end
+  end
 
-      bar_service.
+  it "can retrieve a thing"  do
+    bar_service.
         upon_receiving("a retrieve thing request").with({
         method: :get,
         path: '/thing'
@@ -42,17 +43,6 @@ describe "Bar", :pact => true do
   end
 
   it 'creates a pact with a provider param' do
-    Pact.clear_configuration
-    Pact.clear_consumer_world
-
-    Pact.service_consumer "Foo" do
-      has_pact_with "Bar" do
-        mock_service :bar_service do
-          pact_specification_version "2"
-          port 4638
-        end
-      end
-    end
     bar_service.
       upon_receiving("a retrieve specific thing request")
       .with({
