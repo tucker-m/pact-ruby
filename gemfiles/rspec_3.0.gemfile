@@ -3,5 +3,6 @@
 source "https://rubygems.org"
 
 gem "rspec", "3.0.0"
+gem 'pact-support', github: 'tucker-m/pact-support', tag: 'pr1.1'
 
 gemspec path: "../"
